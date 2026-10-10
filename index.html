@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FITCS Student Portal</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="auth-page">
+  <main class="auth-card">
+    <div class="brand-mark">FITCS</div>
+    <p class="eyebrow">FACULTY OF IT & COMPUTER SCIENCE</p>
+    <h1>Student Portal</h1>
+    <p class="muted">Sign in to verify your academic details.</p>
+    <form id="loginForm">
+      <label for="enrollmentNo">Enrollment number</label>
+      <input id="enrollmentNo" name="enrollmentNo" autocomplete="username" required>
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" autocomplete="current-password" required>
+      <button type="submit">Sign in <span aria-hidden="true">→</span></button>
+      <p id="message" class="message" role="status"></p>
+    </form>
+    <p class="small muted">Forgot your password? Contact your authorized department administrator.</p>
+  </main>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

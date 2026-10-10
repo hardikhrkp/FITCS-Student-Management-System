@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin · FITCS Student Portal</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="index.html">FITCS <span>Admin</span></a></header>
+  <main class="container narrow">
+    <div class="page-heading"><div><p class="eyebrow">AUTHORIZED STAFF</p><h1>Admin panel</h1><p class="muted">Reset student passwords and review verification status.</p></div></div>
+    <section class="panel" id="adminLoginPanel">
+      <h2>Admin sign in</h2>
+      <p class="small muted">Starter gate only. Replace with verified institutional identity before production use.</p>
+      <form id="adminLoginForm">
+        <label for="adminEmail">Authorized admin email</label><input id="adminEmail" type="email" required>
+        <label for="adminPassphrase">Admin gate secret</label><input id="adminPassphrase" type="password" required>
+        <button type="submit">Sign in</button><p id="loginMessage" class="message" role="status"></p>
+      </form>
+    </section>
+    <section class="panel hidden" id="adminTools">
+      <div class="section-heading"><h2>Reset student password</h2><button class="button-secondary" id="adminLogout">Log out</button></div>
+      <form id="resetForm"><label for="resetEnrollment">Enrollment number</label><input id="resetEnrollment" required><button type="submit">Reset and email temporary password</button><p id="resetMessage" class="message" role="status"></p></form>
+      <hr>
+      <div class="section-heading"><h2>Verification report</h2><button class="button-secondary" id="refreshReport">Refresh</button></div>
+      <div class="table-wrap"><table><thead><tr><th>Enrollment</th><th>Student</th><th>Course</th><th>Status</th><th>Remarks</th></tr></thead><tbody id="reportBody"><tr><td colspan="5">Sign in to load the report.</td></tr></tbody></table></div>
+      <button class="button-secondary" id="exportCsv">Export CSV</button>
+    </section>
+  </main>
+  <script src="js/api.js"></script><script src="js/admin.js"></script>
+</body>
+</html>

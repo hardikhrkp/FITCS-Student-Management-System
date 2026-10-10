@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Dashboard · FITCS</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="dashboard.html">FITCS <span>Student Portal</span></a>
+    <button class="button-secondary" id="logoutBtn">Log out</button>
+  </header>
+  <main class="container">
+    <div class="page-heading">
+      <div><p class="eyebrow">STUDENT WORKSPACE</p><h1 id="welcome">My dashboard</h1><p class="muted">Review your academic details and mentor information.</p></div>
+      <span class="pill">Academic verification</span>
+    </div>
+    <section class="grid">
+      <article class="panel span-2">
+        <h2>Academic details</h2>
+        <dl class="details">
+          <div><dt>Enrollment number</dt><dd id="enrollmentNo">—</dd></div>
+          <div><dt>Course</dt><dd id="course">—</dd></div>
+          <div><dt>Semester</dt><dd id="semester">—</dd></div>
+          <div><dt>Minor subject</dt><dd id="minorSubject">—</dd></div>
+          <div><dt>University elective (UE)</dt><dd id="ueSubject">—</dd></div>
+        </dl>
+      </article>
+      <article class="panel">
+        <h2>My mentor</h2>
+        <div id="mentorDetails" class="mentor-details"><p class="muted">Loading mentor details…</p></div>
+      </article>
+      <article class="panel span-2">
+        <div class="section-heading"><div><h2>Verify your details</h2><p class="muted">Confirm only after reviewing each field.</p></div><span id="verificationStatus" class="pill">PENDING</span></div>
+        <form id="verificationForm">
+          <label class="check-row"><input type="checkbox" id="confirmCourse" required> My course is correct.</label>
+          <label class="check-row"><input type="checkbox" id="confirmMinor" required> My Minor subject is correct.</label>
+          <label class="check-row"><input type="checkbox" id="confirmUE" required> My UE subject is correct.</label>
+          <label for="correctionRemarks">If anything is incorrect, describe the correction instead</label>
+          <textarea id="correctionRemarks" rows="3" maxlength="1000" placeholder="Describe the incorrect detail and the correction needed…"></textarea>
+          <p class="small muted">Submit either all three confirmations or a correction request. A correction request is not a confirmation.</p>
+          <button type="submit">Submit verification</button>
+          <p id="message" class="message" role="status"></p>
+        </form>
+      </article>
+    </section>
+  </main>
+  <script src="js/api.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
