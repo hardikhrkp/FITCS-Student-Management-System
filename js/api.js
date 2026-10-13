@@ -7,18 +7,25 @@ const API_BASE_URL = 'https://script.google.com/macros/s/AKfycbxyblrIADq16WUbdy9
 
 
 async function api(action, payload = {}) {
+  if (!API_BASE_URL || API_BASE_URL.includes('YOUR_GOOGLE')) {
+    throw new Error('Configure your Google Apps Script URL.');
+  }
+
   const response = await fetch(API_BASE_URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'text/plain;charset=utf-8'
     },
-    body: JSON.stringify({ action, ...payload }),
+    body: JSON.stringify({
+      action,
+      ...payload
+    }),
     redirect: 'follow',
     credentials: 'omit'
   });
 
   if (!response.ok) {
-    throw new Error('Backend request failed: ' + response.status);
+    throw new Error(`Backend request failed: ${response.status}`);
   }
 
   const result = await response.json();
