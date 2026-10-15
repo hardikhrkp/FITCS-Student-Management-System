@@ -18,9 +18,23 @@ async function loadDashboard() {
       box.append('Contact: '); box.append(safeLink(d.mentor.contactNo || 'Not available', 'tel:' + (d.mentor.contactNo || ''))); box.append(document.createElement('br'));
       box.append('Email: '); box.append(safeLink(d.mentor.email || 'Not available', 'mailto:' + (d.mentor.email || '')));
     }
-    if (d.verification.status === 'VERIFIED') {
-      ['confirmCourse','confirmMinor','confirmUE'].forEach(id => { document.getElementById(id).checked = true; });
-    }
+    
+const submitButton = document.querySelector(
+  '#verificationForm button[type="submit"]'
+);
+
+if (d.verification.status === 'VERIFIED') {
+  ['confirmCourse', 'confirmMinor', 'confirmUE'].forEach(id => {
+    document.getElementById(id).checked = true;
+  });
+
+  submitButton.disabled = true;
+  submitButton.textContent = 'Already Verified';
+} else {
+  submitButton.disabled = false;
+  submitButton.textContent = 'Submit verification';
+}
+
     document.getElementById('correctionRemarks').value = d.verification.correctionRemarks || '';
   } catch (err) { msg.textContent = err.message; if (/session|log in|login/i.test(err.message)) { clearToken(); } }
 }
@@ -36,7 +50,19 @@ document.getElementById('verificationForm').addEventListener('submit', async e =
   try {
     const result = await api('submitVerification', { token: getToken(), courseConfirmed, minorConfirmed, ueConfirmed, correctionRemarks });
     msg.textContent = result.status === 'VERIFIED' ? 'Your verification has been recorded.' : 'Your correction request has been recorded.';
-    msg.className = 'message success'; setText('verificationStatus', result.status);
+    
+msg.className = 'message success';
+setText('verificationStatus', result.status);
+
+if (result.status === 'VERIFIED') {
+  const submitButton = document.querySelector(
+    '#verificationForm button[type="submit"]'
+  );
+
+  submitButton.disabled = true;
+  submitButton.textContent = 'Already Verified';
+}
+
   } catch (err) { msg.textContent = err.message; }
 });
 document.getElementById('logoutBtn').addEventListener('click', async () => {
